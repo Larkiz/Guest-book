@@ -19,7 +19,7 @@ export const CommentsController = {
       const jsonData = JSON.parse(data);
 
       jsonData.unshift(body);
-      // writeFile("db/comments.json", JSON.stringify(jsonData));
+      writeFile("db/comments.json", JSON.stringify(jsonData));
       return body;
     }
   },
