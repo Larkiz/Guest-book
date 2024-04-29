@@ -10,16 +10,17 @@ export const CommentsController = {
     return JSON.parse(data);
   },
   new: async (body) => {
-    const data = await readFile(`db/comments.json`, "utf-8");
-    const date = new Date().toLocaleDateString("ru-RU");
+    if ("star" in body && Object.keys(body.star).length === 3) {
+      const data = await readFile(`db/comments.json`, "utf-8");
+      const date = new Date().toLocaleDateString("ru-RU");
 
-    body.date = date;
-    body.id = uuid();
-    const jsonData = JSON.parse(data);
+      body.date = date;
+      body.id = uuid();
+      const jsonData = JSON.parse(data);
 
-    jsonData.unshift(body);
-
-    writeFile("db/comments.json", JSON.stringify(jsonData));
-    return body;
+      jsonData.unshift(body);
+      // writeFile("db/comments.json", JSON.stringify(jsonData));
+      return body;
+    }
   },
 };
